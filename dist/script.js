@@ -20075,7 +20075,7 @@ Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_item'
 Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.balcon_icons_img img', '.balcon_icons_img', '.big_img img', 'do_image_more');
 Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(calcStorage);
 Object(_modules_calcData__WEBPACK_IMPORTED_MODULE_4__["default"])(calcStorage);
-Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])('.time', '2022-03-03');
+Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])();
 
 /***/ }),
 
@@ -20449,52 +20449,39 @@ var tabs = function tabs(contentSelector, linkSelector, contentBlockSelector, ac
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var timer = function timer(timerId, deadline) {
-  function getTimeRemaining(endtime) {
-    var t = Date.parse(endtime) - Date.parse(new Date()),
-        days = Math.floor(t / (1000 * 60 * 60 * 24)),
-        hours = Math.floor(t / (1000 * 60 * 60) % 24),
-        minutes = Math.floor(t / 1000 / 60 % 24),
-        seconds = Math.floor(t / 1000 % 60);
-    return {
-      'total': t,
-      'days': days,
-      'hours': hours,
-      'minutes': minutes,
-      'seconds': seconds
-    };
-  }
+  var countDown = function countDown() {
+    var countDate = new Date('May 09, 2022 00:00:00').getTime();
+    var now = new Date().getTime();
+    var gap = countDate - now;
+    var second = 1000;
+    var minute = second * 60;
+    var hour = minute * 60;
+    var day = hour * 24;
+    var textDay = Math.floor(gap / day);
+    var textHour = Math.floor(gap % day / hour);
+    var textMinute = Math.floor(gap % hour / minute);
+    var textSecond = Math.floor(gap % minute / second);
 
-  function setClock(selector, endtime) {
-    var timer = document.querySelector(selector),
-        days = document.querySelector('#days'),
-        hours = document.querySelector('#hours'),
-        minutes = document.querySelector('#minutes'),
-        seconds = document.querySelector('#seconds'),
-        timeInterval = setInterval(updateClock, 1000);
-    updateClock();
-
-    function zeroToNumber(num) {
-      if (num >= 0 && num < 10) {
-        return '0' + num;
+    function addZero(number) {
+      if (number < 10 && number > 0) {
+        return '0' + number;
       } else {
-        return num;
+        return number;
       }
     }
 
-    function updateClock() {
-      var t = getTimeRemaining(endtime);
-      days.innerHTML = zeroToNumber(t.days);
-      hours.innerHTML = zeroToNumber(t.hours);
-      minutes.innerHTML = zeroToNumber(t.minutes);
-      seconds.innerHTML = zeroToNumber(t.seconds);
+    addZero(textDay);
+    addZero(textHour);
+    addZero(textMinute);
+    addZero(textSecond);
+    document.querySelector('#days').innerText = addZero(textDay);
+    document.querySelector('#hours').innerText = addZero(textHour);
+    document.querySelector('#minutes').innerText = addZero(textMinute);
+    document.querySelector('#seconds').innerText = addZero(textSecond);
+  };
 
-      if (t.total <= 0) {
-        clearInterval(timeInterval);
-      }
-    }
-  }
-
-  setClock(timerId, deadline);
+  countDown();
+  setInterval(countDown, 1000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (timer);
