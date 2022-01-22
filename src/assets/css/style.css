@@ -931,6 +931,8 @@ textarea:focus {
   display: none;
   margin-bottom: 3rem;
   width: 30rem;
+  margin-left: auto; /* added by me */
+  margin-right: auto; /* added by me */
 }
 
 .popup_calc_content #type1 {

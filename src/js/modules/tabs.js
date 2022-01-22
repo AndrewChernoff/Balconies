@@ -10,11 +10,11 @@ const tabs = (contentSelector, linkSelector, contentBlockSelector, activeClassNa
 
     function showRow(i = 0) {
         rows[i].style.display = 'block';
-
     }
 
     hideRows();
     showRow();
+
     ///Links
     link[0].classList.add(activeClassName);
 
