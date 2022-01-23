@@ -20062,6 +20062,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
 /* harmony import */ var _modules_calcData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/calcData */ "./src/js/modules/calcData.js");
 /* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/timer */ "./src/js/modules/timer.js");
+/* harmony import */ var _modules_images__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/images */ "./src/js/modules/images.js");
+
 
 
 
@@ -20076,6 +20078,7 @@ Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.balcon_icons_img
 Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(calcStorage);
 Object(_modules_calcData__WEBPACK_IMPORTED_MODULE_4__["default"])(calcStorage);
 Object(_modules_timer__WEBPACK_IMPORTED_MODULE_5__["default"])();
+Object(_modules_images__WEBPACK_IMPORTED_MODULE_6__["default"])();
 
 /***/ }),
 
@@ -20328,6 +20331,94 @@ var forms = function forms(state) {
 
 /***/ }),
 
+/***/ "./src/js/modules/images.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/images.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var images = function images() {
+  var imgs = document.querySelectorAll('.preview');
+  var popupImgs = document.createElement('div');
+  var popupImgContent = document.createElement('div');
+  var bigImg = document.createElement('img');
+  var popUpContent = document.createElement('div');
+  popupImgs.classList.add('popup', 'big_img_popup');
+  document.body.appendChild(popupImgs);
+  popupImgContent.classList.add('popup_content');
+  popupImgs.appendChild(popUpContent);
+  popUpContent.appendChild(bigImg);
+  popUpContent.style.display = 'flex';
+  popUpContent.style.justifyContent = 'center';
+  popUpContent.style.alignItems = 'center';
+  bigImg.style.cssText = "\n        position: fixed;\n        top: 10%;\n        left: 50%;\n        -webkit-transform: translateX(-50%);\n        transform: translateX(-50%);\n        max-width: 450px;\n        ";
+  console.log(bigImg);
+  imgs.forEach(function (img, i) {
+    img.addEventListener('click', function (e) {
+      e.preventDefault();
+      popupImgs.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      var path = e.target.parentElement;
+      bigImg.src = path.getAttribute('href'); //console.log(i);
+    });
+  });
+  document.querySelector('.big_img_popup').addEventListener('click', function (e) {
+    if (e.target) {
+      popupImgs.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+  /*    const imgs = document.querySelectorAll('.preview');
+    const popupImgs = document.createElement('div');
+  popupImgs.classList.add('popup', 'big_img_popup');
+  document.body.appendChild(popupImgs);
+    const popupImgContent = document.createElement('div');
+  popupImgContent.classList.add('popup_content');
+    let bigImg = document.createElement('img');
+  const popUpContent = document.createElement('div');
+  popupImgs.appendChild(popUpContent);
+  popUpContent.appendChild(bigImg);
+    popUpContent.style.display = 'flex';
+  popUpContent.style.justifyContent = 'center';
+  popUpContent.style.alignItems = 'center';
+    bigImg.style.cssText = `
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      max-width: 450px;
+      `;
+    console.log(bigImg)
+    imgs.forEach((img, i) => {
+      img.addEventListener('click', (e) => {
+          e.preventDefault();
+          popupImgs.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+          let path = e.target.parentElement;
+          bigImg.src = path.getAttribute('href');
+          //console.log(i);
+      })
+  })
+    document.querySelector('.big_img_popup').addEventListener('click', (e) => {
+      if (e.target) {
+          popupImgs.style.display = 'none';
+          document.body.style.overflow = '';
+      }
+  }) */
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (images);
+
+/***/ }),
+
 /***/ "./src/js/modules/modal.js":
 /*!*********************************!*\
   !*** ./src/js/modules/modal.js ***!
@@ -20463,7 +20554,7 @@ var timer = function timer(timerId, deadline) {
     var textSecond = Math.floor(gap % minute / second);
 
     function addZero(number) {
-      if (number < 10 && number > 0) {
+      if (number < 10 && number >= 0) {
         return '0' + number;
       } else {
         return number;

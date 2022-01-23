@@ -16,7 +16,7 @@ const timer = (timerId, deadline) => {
         const textSecond = Math.floor((gap % minute) / second);
 
         function addZero(number) {
-            if (number < 10 && number > 0) {
+            if (number < 10 && number >= 0) {
                 return '0' + number;
             } else {
                 return number;
