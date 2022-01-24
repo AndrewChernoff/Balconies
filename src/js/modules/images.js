@@ -30,19 +30,18 @@ const images = () => {
 
     console.log(bigImg)
 
-    imgs.forEach((img, i) => {
+    imgs.forEach((img) => {
         img.addEventListener('click', (e) => {
             e.preventDefault();
             popupImgs.style.display = 'block';
             document.body.style.overflow = 'hidden';
             let path = e.target.parentElement;
             bigImg.src = path.getAttribute('href');
-            //console.log(i);
         })
     })
 
     document.querySelector('.big_img_popup').addEventListener('click', (e) => {
-        if (e.target) {
+        if (e.target && e.target.classList.contains('popup')) {
             popupImgs.style.display = 'none';
             document.body.style.overflow = '';
         }

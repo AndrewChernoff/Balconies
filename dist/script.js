@@ -20360,17 +20360,17 @@ var images = function images() {
   popUpContent.style.alignItems = 'center';
   bigImg.style.cssText = "\n        position: fixed;\n        top: 10%;\n        left: 50%;\n        -webkit-transform: translateX(-50%);\n        transform: translateX(-50%);\n        max-width: 450px;\n        ";
   console.log(bigImg);
-  imgs.forEach(function (img, i) {
+  imgs.forEach(function (img) {
     img.addEventListener('click', function (e) {
       e.preventDefault();
       popupImgs.style.display = 'block';
       document.body.style.overflow = 'hidden';
       var path = e.target.parentElement;
-      bigImg.src = path.getAttribute('href'); //console.log(i);
+      bigImg.src = path.getAttribute('href');
     });
   });
   document.querySelector('.big_img_popup').addEventListener('click', function (e) {
-    if (e.target) {
+    if (e.target && e.target.classList.contains('popup')) {
       popupImgs.style.display = 'none';
       document.body.style.overflow = '';
     }
