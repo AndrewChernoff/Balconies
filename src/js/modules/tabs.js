@@ -3,6 +3,8 @@ const tabs = (contentSelector, linkSelector, contentBlockSelector, activeClassNa
     const link = document.querySelectorAll(linkSelector);
     const rows = document.querySelectorAll(contentBlockSelector);
 
+    rows.forEach(row => row.classList.add('faded'));
+
     /// Content
     function hideRows() {
         rows.forEach(row => row.style.display = 'none');

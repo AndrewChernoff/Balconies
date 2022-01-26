@@ -1,10 +1,11 @@
-function modal() {
+import { getScrollBarWidth } from "./getScrollBarWidth";
+
+const modal = () => {
 
     function modalWindow(triggerSelector, modalSelector) {
         const trigger = document.querySelectorAll(triggerSelector);
         const modalWindow = document.querySelector(modalSelector);
         const windows = document.querySelectorAll('[data-modal]');
-
 
         trigger.forEach(el => {
             el.addEventListener('click', (e) => {
@@ -16,6 +17,7 @@ function modal() {
 
                 modalWindow.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                document.body.style.marginRight = getScrollBarWidth();
             });
         })
 
@@ -23,6 +25,7 @@ function modal() {
             if (e.target.className === modalSelector.slice(1) || e.target.outerHTML === '<strong>×</strong>') {
                 modalWindow.style.display = 'none';
                 document.body.style.overflow = '';
+                document.body.style.marginRight = '0px';
             }
         })
     }
@@ -43,8 +46,6 @@ function modal() {
     }
 
     //showModalByTime('.popup');
-
-
 
 }
 

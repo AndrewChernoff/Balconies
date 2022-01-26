@@ -20268,9 +20268,6 @@ var forms = function forms(state) {
       postData('assets/server.php', obj).then(function (response) {
         console.log(response);
         formStatus.textContent = message.success;
-        /* if (document.querySelector('.popup').style.display === 'block') {
-            document.querySelector('.popup').style.display = 'none';
-        } */
       }).then(function () {
         //setTimeout(() => formEl.reset(), 3000);
         formEl.reset();
@@ -20310,6 +20307,7 @@ var forms = function forms(state) {
             if (el.style.display === 'block') {
               el.style.display = 'none';
               document.body.style.overflow = '';
+              document.body.style.marginRight = '0px'; ///
             }
           });
         }, 3000);
@@ -20331,6 +20329,32 @@ var forms = function forms(state) {
 
 /***/ }),
 
+/***/ "./src/js/modules/getScrollBarWidth.js":
+/*!*********************************************!*\
+  !*** ./src/js/modules/getScrollBarWidth.js ***!
+  \*********************************************/
+/*! exports provided: getScrollBarWidth */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getScrollBarWidth", function() { return getScrollBarWidth; });
+function getScrollBarWidth() {
+  var div = document.createElement('div');
+  div.style.overflowY = 'scroll';
+  div.style.width = '50px';
+  div.style.height = '50px'; // must put it in the document, otherwise sizes will be 0
+
+  document.body.append(div);
+  var scrollWidth = div.offsetWidth - div.clientWidth;
+  div.remove();
+  return "".concat(scrollWidth, "px");
+}
+
+
+
+/***/ }),
+
 /***/ "./src/js/modules/images.js":
 /*!**********************************!*\
   !*** ./src/js/modules/images.js ***!
@@ -20342,6 +20366,8 @@ var forms = function forms(state) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _getScrollBarWidth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getScrollBarWidth */ "./src/js/modules/getScrollBarWidth.js");
+
 
 
 var images = function images() {
@@ -20358,13 +20384,14 @@ var images = function images() {
   popUpContent.style.display = 'flex';
   popUpContent.style.justifyContent = 'center';
   popUpContent.style.alignItems = 'center';
-  bigImg.style.cssText = "\n        position: fixed;\n        top: 10%;\n        left: 50%;\n        -webkit-transform: translateX(-50%);\n        transform: translateX(-50%);\n        max-width: 450px;\n        ";
+  bigImg.style.cssText = "\n        position: fixed;\n        top: 10%;\n        left: 50%;\n        -webkit-transform: translateX(-50%);\n        transform: translateX(-50%);\n        max-width: 450px;\n        max-height: 450px;\n        ";
   console.log(bigImg);
   imgs.forEach(function (img) {
     img.addEventListener('click', function (e) {
       e.preventDefault();
       popupImgs.style.display = 'block';
       document.body.style.overflow = 'hidden';
+      document.body.style.marginRight = Object(_getScrollBarWidth__WEBPACK_IMPORTED_MODULE_1__["getScrollBarWidth"])();
       var path = e.target.parentElement;
       bigImg.src = path.getAttribute('href');
     });
@@ -20373,46 +20400,9 @@ var images = function images() {
     if (e.target && e.target.classList.contains('popup')) {
       popupImgs.style.display = 'none';
       document.body.style.overflow = '';
+      document.body.style.marginRight = '0px';
     }
   });
-  /*    const imgs = document.querySelectorAll('.preview');
-    const popupImgs = document.createElement('div');
-  popupImgs.classList.add('popup', 'big_img_popup');
-  document.body.appendChild(popupImgs);
-    const popupImgContent = document.createElement('div');
-  popupImgContent.classList.add('popup_content');
-    let bigImg = document.createElement('img');
-  const popUpContent = document.createElement('div');
-  popupImgs.appendChild(popUpContent);
-  popUpContent.appendChild(bigImg);
-    popUpContent.style.display = 'flex';
-  popUpContent.style.justifyContent = 'center';
-  popUpContent.style.alignItems = 'center';
-    bigImg.style.cssText = `
-      position: fixed;
-      top: 10%;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-      max-width: 450px;
-      `;
-    console.log(bigImg)
-    imgs.forEach((img, i) => {
-      img.addEventListener('click', (e) => {
-          e.preventDefault();
-          popupImgs.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-          let path = e.target.parentElement;
-          bigImg.src = path.getAttribute('href');
-          //console.log(i);
-      })
-  })
-    document.querySelector('.big_img_popup').addEventListener('click', (e) => {
-      if (e.target) {
-          popupImgs.style.display = 'none';
-          document.body.style.overflow = '';
-      }
-  }) */
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (images);
@@ -20432,10 +20422,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _getScrollBarWidth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getScrollBarWidth */ "./src/js/modules/getScrollBarWidth.js");
 
 
 
-function modal() {
+
+var modal = function modal() {
   function modalWindow(triggerSelector, modalSelector) {
     var trigger = document.querySelectorAll(triggerSelector);
     var modalWindow = document.querySelector(modalSelector);
@@ -20451,12 +20443,14 @@ function modal() {
         });
         modalWindow.style.display = 'block';
         document.body.style.overflow = 'hidden';
+        document.body.style.marginRight = Object(_getScrollBarWidth__WEBPACK_IMPORTED_MODULE_2__["getScrollBarWidth"])();
       });
     });
     modalWindow.addEventListener('click', function (e) {
       if (e.target.className === modalSelector.slice(1) || e.target.outerHTML === '<strong>×</strong>') {
         modalWindow.style.display = 'none';
         document.body.style.overflow = '';
+        document.body.style.marginRight = '0px';
       }
     });
   }
@@ -20475,7 +20469,7 @@ function modal() {
     }, 5000);
   } //showModalByTime('.popup');
 
-}
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
 
@@ -20497,7 +20491,10 @@ __webpack_require__.r(__webpack_exports__);
 var tabs = function tabs(contentSelector, linkSelector, contentBlockSelector, activeClassName) {
   var content = document.querySelectorAll(contentSelector);
   var link = document.querySelectorAll(linkSelector);
-  var rows = document.querySelectorAll(contentBlockSelector); /// Content
+  var rows = document.querySelectorAll(contentBlockSelector);
+  rows.forEach(function (row) {
+    return row.classList.add('faded');
+  }); /// Content
 
   function hideRows() {
     rows.forEach(function (row) {
@@ -20539,9 +20536,9 @@ var tabs = function tabs(contentSelector, linkSelector, contentBlockSelector, ac
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var timer = function timer(timerId, deadline) {
+var timer = function timer() {
   var countDown = function countDown() {
-    var countDate = new Date('May 09, 2022 00:00:00').getTime();
+    var countDate = new Date('May 31, 2022 00:00:00').getTime();
     var now = new Date().getTime();
     var gap = countDate - now;
     var second = 1000;

@@ -1,6 +1,6 @@
-const timer = (timerId, deadline) => {
+const timer = () => {
     const countDown = () => {
-        const countDate = new Date('May 09, 2022 00:00:00').getTime();
+        const countDate = new Date('May 31, 2022 00:00:00').getTime();
 
         const now = new Date().getTime();
         const gap = countDate - now;

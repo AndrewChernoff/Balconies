@@ -66,10 +66,6 @@ const forms = (state) => {
                 .then(response => {
                     console.log(response);
                     formStatus.textContent = message.success;
-                    /* if (document.querySelector('.popup').style.display === 'block') {
-                        document.querySelector('.popup').style.display = 'none';
-                    } */
-
                 })
                 .then(() => {
                     //setTimeout(() => formEl.reset(), 3000);
@@ -89,6 +85,7 @@ const forms = (state) => {
                             if (el.style.display === 'block') {
                                 el.style.display = 'none';
                                 document.body.style.overflow = '';
+                                document.body.style.marginRight = '0px';///
                             }
                         })
                     }, 3000);
